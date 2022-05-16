@@ -1,0 +1,15 @@
+name: 'Sonarqube Job Trigger'
+description: 'Trigger a Sonarqube job'
+branding:
+  icon: 'terminal'
+  color: 'green' 
+inputs: 
+  api_token:
+    description: 'Specifies the authentication token used to authenticate with to SonarQube. If this argument is added to the begin step, it must also be added to the end step.'
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: ${{ github.action_path }}/entrypoint.ps1 '${{ inputs.api_token }}'
+      id: script
+      shell: 
